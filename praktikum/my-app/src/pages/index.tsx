@@ -2,16 +2,22 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
 
-      <div>
-      <h1>Praktikum Next.js pages Router</h1><br />
-      <p>Mahasiswa D4 Pengembangan Web</p>
-     </div>
+ <div style={{ padding: "20px" }}>
+      <h1>Halaman Utama</h1>
+
+      <Link href="/about">
+        <button style={{ marginTop: "10px" }}>
+          Ke Halaman About
+        </button>
+      </Link>
+    </div>
   )
 }
   
