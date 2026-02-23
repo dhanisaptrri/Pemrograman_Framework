@@ -1,10 +1,15 @@
+import { useRouter } from "next/router";
+
 const HalamanProduk = () => {
-    return (
-        <div>
-            <h1>Halaman Produk</h1>
-            <p>Produk :</p>
-        </div>
-    );
+  const Router = useRouter();
+  console.log(Router);
+
+  return (
+    <div>
+      <h1>Halaman Produk</h1>
+      <p>Produk :</p>
+    </div>
+  );
 };
 
 export default HalamanProduk;
