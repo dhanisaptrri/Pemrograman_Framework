@@ -1,16 +1,18 @@
 import Navbar from "../navbar";
 
 type AppShellProps = {
-    children: React.ReactNode;
+  children: React.ReactNode;
 };
 
-const AppShell = ({ children }: AppShellProps) => {
-    return (
-        <main>
-            <Navbar />
-            {children}
-        </main>
-    );
-}
+const AppShell = (props: AppShellProps) => {
+  const { children } = props;
+  return (
+    <main>
+      <Navbar />
+      {children}
+      <div>footer</div>
+    </main>
+  );
+};
 
 export default AppShell;
