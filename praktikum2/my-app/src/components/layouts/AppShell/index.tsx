@@ -6,12 +6,17 @@ type AppShellProps = {
 
 const AppShell = (props: AppShellProps) => {
   const { children } = props;
+
   return (
-    <main>
+    <div className="app-shell">
       <Navbar />
-      {children}
-      <div>footer</div>
-    </main>
+      <main className="content">
+        {children}
+      </main>
+      <footer className="footer">
+        Praktikum Next.js Pages Router
+      </footer>
+    </div>
   );
 };
 
