@@ -4,6 +4,7 @@ const halamanToko = () => {
   //const router = useRouter();
   //console.log(router);
   const { query } = useRouter();
+  const slug = query.slug;
 
   return (
     <div>
@@ -12,6 +13,7 @@ const halamanToko = () => {
       {/* <p>
         Toko : {Array.isArray(query.slug) ? query.slug.join("-") : query.slug}
       </p> */}
+      <p>Kategori: {slug ? slug[0] : "Semua Kategori"}</p>
     </div>
   );
 };
