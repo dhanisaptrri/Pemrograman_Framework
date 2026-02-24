@@ -1,15 +1,19 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 
-const HalamanLogin = () => {
+const Login = () => {
+  const { push } = useRouter();
+
+  const handleLogin = () => {
+    localStorage.setItem("isLogin", "true");
+    push("/produk");
+  };
+
   return (
     <div>
       <h1>Halaman Login</h1>
-
-      <Link href="/auth/register">
-        Ke Halaman Register
-      </Link>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };
 
-export default HalamanLogin;
+export default Login;
