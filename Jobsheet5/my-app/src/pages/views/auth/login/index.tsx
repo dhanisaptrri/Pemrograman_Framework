@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from './login.module.css';
+//import styles from './login.module.css';
+import styles from './login.module.scss';
 
 const TampilanLogin = () => {
   const {push} = useRouter();
-
   const handleLogin = () => {
     // logic login disini
     push('/produk');
