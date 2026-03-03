@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type ProductType = {
@@ -10,37 +9,39 @@ type ProductType = {
 };
 
 const Kategori = () => {
-  // const [isLogin, setIsLogin] = useState(false);
-  // const { push } = useRouter();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (!isLogin) {
-  //     push("/auth/login");
-  //   }
-  // }, []);
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/produk");
+      const responsedata = await response.json();
+      setProducts(responsedata.data || []);
+    } catch (error) {
+      console.error("Error fetching produk:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetch("/api/produk")
-      .then((response) => response.json())
-      .then((responsedata) => {
-        // console.log("Data produk:", responsedata.data);
-        setProducts(responsedata.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching produk:", error);
-      });
+    fetchProducts();
   }, []);
 
   return (
     <div>
       <h1>Daftar Produk</h1>
-      {products.map((products: ProductType) => (
-        <div key={products.id}>
-          <h2>{products.name}</h2>
-          <p>Harga: {products.price}</p>
-          <p>Ukuran: {products.size}</p>
-          <p>Kategori: {products.category}</p>
+      <button onClick={fetchProducts} disabled={loading} style={{ marginBottom: 12 }}>
+        {loading ? "Refreshing..." : "Refresh Data"}
+      </button>
+
+      {products.map((product: ProductType) => (
+        <div key={product.id}>
+          <h2>{product.name}</h2>
+          <p>Harga: {product.price}</p>
+          <p>Ukuran: {product.size}</p>
+          <p>Kategori: {product.category}</p>
         </div>
       ))}
     </div>
