@@ -1,51 +1,36 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import TampilanProduk from "../views/produk";
+const kategori = () => {
+  // const [isLogin, setIsLogin] = useState(false);
+  // const { push } = useRouter();
+  const [products, setProducts] = useState([]);
 
-type ProductType = {
-  id: string;
-  name: string;
-  price: number;
-  size: string;
-  category: string;
-};
+  // console.log("products:", products);
 
-const Kategori = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/produk");
-      const responsedata = await response.json();
-      setProducts(responsedata.data || []);
-    } catch (error) {
-      console.error("Error fetching produk:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // useEffect(() => {
+  //   if (!isLogin) {
+  //     push("/auth/login");
+  //   }
+  // }, []);
 
   useEffect(() => {
-    fetchProducts();
+    fetch("/api/produk")
+      .then((response) => response.json())
+      .then((responsedata) => {
+        setProducts(responsedata.data);
+        console.log("Data produk:", responsedata.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching produk:", error);
+      });
   }, []);
 
   return (
     <div>
-      <h1>Daftar Produk</h1>
-      <button onClick={fetchProducts} disabled={loading} style={{ marginBottom: 12 }}>
-        {loading ? "Refreshing..." : "Refresh Data"}
-      </button>
-
-      {products.map((product: ProductType) => (
-        <div key={product.id}>
-          <h2>{product.name}</h2>
-          <p>Harga: {product.price}</p>
-          <p>Ukuran: {product.size}</p>
-          <p>Kategori: {product.category}</p>
-        </div>
-      ))}
+      <TampilanProduk products={products} />
     </div>
   );
 };
 
-export default Kategori;
+export default kategori;
