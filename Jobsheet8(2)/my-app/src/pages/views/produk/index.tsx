@@ -1,10 +1,26 @@
-const HeroSection = () => {
+type ProductType = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+};
+
+const TampilanProduk = ({ products }: { products: ProductType[] }) => {
   return (
-    <section>
-      <h1>Halaman Produk</h1>
-      <p>Selamat datang di halaman produk</p>
-    </section>
+    <div>
+      <h1>Daftar Produk</h1>
+
+      {products.map((products: ProductType) => (
+        <div key={products.id}>
+          <h2>nama: {products.name}</h2>
+          <p>Harga: {products.price}</p>
+          <img src={products.image} alt={products.name} width={200} />
+          <p>kategori: {products.category}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 
-export default HeroSection;
+export default TampilanProduk;
