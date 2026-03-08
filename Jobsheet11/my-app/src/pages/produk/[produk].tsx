@@ -1,26 +1,28 @@
-import fetcher from "@/utils/swr/fetcher";
-import { useRouter } from "next/router";
-import useSWR from "swr";
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import type { NextApiRequest, NextApiResponse } from "next";
 
-const HalamanProduk = () => {
-  const { query } = useRouter();
-  
-  // Perhatikan penggunaan backtick (`) untuk template literal 
-  // dan pastikan tidak ada tanda petik (') nyasar di akhir fetcher
-  const { data, error, isLoading } = useSWR(
-    query.produk ? `/api/produk/${query.produk}` : null, 
-    fetcher
-  );
+import {
+  retrieveDataByID,
+  retrieveProducts,
 
-  return (
-    <div>
-      <h1>Halaman Produk</h1>
-      <p>Produk : {query.produk}</p>
-      {/* Opsional: Tambahkan render data produk di sini */}
-      {isLoading && <p>Loading...</p>}
-      {data && <p>Nama Produk: {data.data.name}</p>}
-    </div>
-  );
+} from "../../utils/db/servicefirebase";
+
+type Data = {
+  status: boolean;
+  status_code: number;
+  data: any;
 };
 
-export default HalamanProduk;
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>,
+) {
+  if (req.query.produk![1]) {
+    const data = await retrieveDataByID("products", req.query.produk![1]);
+    res.status(200).json({ status: true, status_code: 200, data });
+    return;
+  } else {
+    const data = await retrieveProducts("products");
+    res.status(200).json({ status: true, status_code: 200, data });
+  };
+}
