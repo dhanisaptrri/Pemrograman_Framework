@@ -24,3 +24,4 @@ const DetailProduk = ({ products }: { products: ProductType }) => {
 };
 
 export default DetailProduk;
+
