@@ -9,11 +9,11 @@ const Navbar = () => {
       <div className='big'>
         <h1>Navbar Component</h1>
       </div>
-      {data ?(
-      <button onClick={() => signIn()}>Sign in</button>
-      ) : (
-        <button onClick={() => signOut()}>Sign out</button>
-      )}
+     {data ? (
+            <button onClick={() => signOut()}>Sign Out</button>
+        ) : (
+            <button onClick={() => signIn()}>Sign In</button>
+        )}
     </div>
   );
 };
