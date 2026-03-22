@@ -31,19 +31,25 @@ export const authOptions: NextAuthOptions = {
     ],
 
     callbacks: {
-        async jwt({ token, account, profile, user }:any) {
+        async jwt({ token, account, profile, user }: any) {
             if (account?.provider === "credentials" && user) {
-                token.email = user.email
+                token.email = user.email;
+                token.fullname = user.fullname;
             }
-            return token
+            // console.log("jwt callback", { token, account, profile, user })
+            return token;
         },
-        async session({ session, token }:any) {
+        async session({ session, token }: any) {
             if (token.email) {
-                session.user.email = token.email
+                session.user.email = token.email;
             }
-            return session
+            if (token.fullname) {
+                session.user.fullname = token.fullname;
+            }
+            // console.log("session callback", { session, token })
+            return session;
         },
     },
 };
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);
