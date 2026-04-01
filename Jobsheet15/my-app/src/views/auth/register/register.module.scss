@@ -1,13 +1,11 @@
 .register {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* penting */
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     padding: 20px;
-    // Tambahkan ini agar seluruh halaman muncul dengan halus
-    animation: fadeIn 0.8s ease-in-out;
 
     &__title {
         width: 100%;
@@ -53,7 +51,6 @@
             }
         }
 
-        // Pindahkan button ke sini agar sinkron dengan struktur HTML
         button {
             width: 100%;
             padding: 12px;
@@ -68,26 +65,6 @@
             &:hover {
                 background: #1e3c72;
                 transform: translateY(-2px);
-            }
-            
-            &:active {
-                transform: translateY(0);
-            }
-        }
-
-        &__text {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #666;
-            
-            a {
-                color: #2a5298;
-                text-decoration: none;
-                font-weight: 600;
-                &:hover {
-                    text-decoration: underline;
-                }
             }
         }
     }
