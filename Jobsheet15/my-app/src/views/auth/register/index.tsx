@@ -9,9 +9,9 @@ const { push } = useRouter();
 const [error, setError] = useState("");
 
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setError("");
     setIsLoading(true);
-    event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
     
@@ -20,6 +20,17 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const fullname = formData.get("Fullname") as string;
     const password = formData.get("Password") as string;
 
+     if (!email) {
+        setError("Email wajib diisi!");
+        setIsLoading(false);
+        return;
+    }
+
+    if (password.length < 6) {
+        setError("Password minimal harus 6 karakter!");
+        setIsLoading(false);
+        return;
+    }
 
     setIsLoading(true); // Mulai loading
     setError(""); // Reset error sebelumnya
@@ -95,7 +106,11 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
                             className={style.register__form__item__input}
                         />
                     </div>
-
+                    {error && (
+                    <p className={style.register__error}>
+                        {error}
+                    </p>
+                )}
                     <button 
                         type="submit" 
                         className={style.register__form__item__button}
