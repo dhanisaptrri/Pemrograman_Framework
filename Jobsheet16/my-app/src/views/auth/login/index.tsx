@@ -56,7 +56,7 @@ const handleSubmit = async (event: any) => {
                         />
                     </div>
 
-                    <div className={style.login__form__item}>
+                    {/* <div className={style.login__form__item}>
                         <label 
                             htmlFor="Fullname" 
                             className={style.login__form__item__label}
@@ -70,7 +70,7 @@ const handleSubmit = async (event: any) => {
                             placeholder="Fullname" 
                             className={style.login__form__item__input}
                         />
-                    </div>
+                    </div> */}
 
                     <div className={style.login__form__item}>
                         <label 
