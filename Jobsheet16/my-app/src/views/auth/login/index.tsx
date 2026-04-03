@@ -81,8 +81,8 @@ const handleSubmit = async (event: any) => {
                         </label>
                         <input 
                             type="password" 
-                            id="Password" 
-                            name="Password" 
+                            id="password" 
+                            name="password" 
                             placeholder="Password" 
                             className={style.login__form__item__input}
                         />

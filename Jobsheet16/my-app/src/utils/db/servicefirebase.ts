@@ -30,7 +30,8 @@ export async function signIn(
         id: doc.id,
         ...doc.data(),
     }));
-    if (data) {
+    if (data.length > 0
+    ) {
         return data[0];
     }else {
         return null;
