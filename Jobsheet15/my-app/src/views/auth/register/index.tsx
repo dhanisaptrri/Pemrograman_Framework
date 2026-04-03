@@ -9,6 +9,8 @@ const { push } = useRouter();
 const [error, setError] = useState("");
 
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setError("");
+    setIsLoading(true);
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
@@ -17,6 +19,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const email = formData.get("email") as string;
     const fullname = formData.get("Fullname") as string;
     const password = formData.get("Password") as string;
+
 
     setIsLoading(true); // Mulai loading
     setError(""); // Reset error sebelumnya
@@ -36,11 +39,12 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     } else {
         setIsLoading(false);
         // Tampilkan pesan error jika email sudah ada atau error lain
-        setError(response.status === 400 ? "User already exists" : "An error occurred");
+        setError(response.status === 400 ? "Email already exists" : "An error occurred");
     }
 };
     return (
         <div className={style.register}>
+          {error && <p className={style.register__error}>{error}</p>}
             <h1 className={style.register__title}>Halaman Register</h1>
             <div className={style.register__form}>
                 <form onSubmit={handleSubmit}>
@@ -95,8 +99,9 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
                     <button 
                         type="submit" 
                         className={style.register__form__item__button}
+                        disabled={isLoading}
                     >
-                        Register
+                        {isLoading ? "Loading..." : "Register"}
                     </button>
                 </form>
                 <br />

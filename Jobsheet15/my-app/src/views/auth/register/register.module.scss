@@ -68,6 +68,13 @@
             }
         }
     }
+
+    // PINDAHKAN INI KE DALAM .register
+    &__error {
+        color: red;
+        font-size: 14px;
+        margin-top: 8px;
+    }
 }
 
 /* Animation */
