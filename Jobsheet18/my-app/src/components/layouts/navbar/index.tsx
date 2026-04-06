@@ -27,8 +27,8 @@ const Navbar = () => {
                   <Image
                     src={data.user.image}
                     alt={data.user.fullname || "User Avatar"}
-                    width={40} // 2. Tentukan lebar (pixel)
-                    height={40} // 3. Tentukan tinggi (pixel)
+                    width={50} // 2. Tentukan lebar (pixel)
+                    height={50} // 3. Tentukan tinggi (pixel)
                     className={styles.navbar__user__image}
                     referrerPolicy="no-referrer" // 4. Tambahkan ini agar gambar Google tidak diblokir
                   />
