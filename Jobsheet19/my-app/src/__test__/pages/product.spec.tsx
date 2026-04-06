@@ -1,0 +1,31 @@
+import { render, screen } from "@testing-library/react";
+import TampilanProduk from "@/pages/produk";
+
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      route: "/product",
+      pathname: "",
+      query: {},
+      asPath: "",
+      push: jest.fn(),
+      events: {
+        on: jest.fn(),
+        off: jest.fn(),
+      },
+      isReady: true,
+    };
+  },
+}));
+
+describe("Product Page", () => {
+  it("renders product page correctly", () => {
+    const page = render(<TampilanProduk />);
+    
+    // Memastikan elemen dengan data-testid="title" memiliki teks "Product Page"
+    // expect(screen.getByTestId("title").textContent).toBe("Product Page");
+    
+    // Melakukan snapshot testing
+    expect(page).toMatchSnapshot();
+  });
+});
