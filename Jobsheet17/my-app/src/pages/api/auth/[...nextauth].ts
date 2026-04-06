@@ -3,6 +3,7 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
 import GoogleProvider from "next-auth/providers/google"
+import GithubProvider from "next-auth/providers/github"
 
 export const authOptions: NextAuthOptions = {
     session: {
@@ -43,18 +44,26 @@ export const authOptions: NextAuthOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID! || "",
             clientSecret: process.env.GOOGLE_CLIENT_SECRET! || "",
+        }),
+
+        GithubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID! || "",
+            clientSecret: process.env.GITHUB_CLIENT_SECRET! || "",
         })
     ],
 
-    callbacks: {
-        async jwt({ token, account, user, image }: any) {
-            if (account?.provider === "credentials" && user) {
-                token.email = user.email
-                token.fullname = user.fullname
-                token.role = user.role
-                token.image = user.image
-            }
-            if (account?.provider === "google") {
+   callbacks: {
+    async jwt({ token, account, user }: any) {
+        // Logika untuk Login Email/Password (Credentials)
+        if (account?.provider === "credentials" && user) {
+            token.email = user.email
+            token.fullname = user.fullname
+            token.role = user.role
+            token.image = user.image
+        }
+
+        // Logika untuk OAuth (Google & GitHub)
+        if (account?.provider === "google" || account?.provider === "github") {
             const data = {
                 fullname: user.name,
                 email: user.email,
@@ -62,6 +71,7 @@ export const authOptions: NextAuthOptions = {
                 type: account.provider,
             };
 
+            // Memanggil service firebase untuk simpan/update data user ke DB
             await signInWithGoogle(data, (result: any) => {
                 if (result.status) {
                     token.fullname = result.data.fullname;
@@ -71,9 +81,9 @@ export const authOptions: NextAuthOptions = {
                     token.role = result.data.role;
                 }
             });
-            }
-            return token
-        },
+        }
+        return token
+    },
         async session({ session, token }: any) {
             if (token.email) {
                 session.user.email = token.email
