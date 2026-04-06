@@ -17,19 +17,25 @@ const TampilanProduk = ({ products }: { products: ProductType[] }) => {
       <div className={styles.produk__content}>
         {products.length > 0 ? (
           <>
-            {products.map((products: ProductType) => (
-              <Link href={`/produk/${products.id}`} key={products.id} className={styles.produk__content__item}>
+            {/* Ubah variabel map dari products menjadi product agar tidak bingung */}
+            {products.map((product: ProductType) => (
+              <Link href={`/produk/${product.id}`} key={product.id} className={styles.produk__content__item}>
                 <div className={styles.produk__content__item__image}>
-                  <Image src={products.image} alt={products.name} width={200} height={200} />
+                  <Image
+                    src={product.image.trim()} 
+                    alt={product.name} 
+                    width={200} 
+                    height={200} 
+                  />
                 </div>
                 <h4 className={styles.produk__content__item__name}>
-                  {products.name}
+                  {product.name}
                 </h4>
                 <p className={styles.produk__content__item__category}>
-                  {products.category}
+                  {product.category}
                 </p>
                 <p className={styles.produk__content__item__price}>
-                  Rp {products.price.toLocaleString()}
+                  Rp {product.price.toLocaleString()}
                 </p>
               </Link>
             ))}
