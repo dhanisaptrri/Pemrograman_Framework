@@ -5,14 +5,14 @@ const nextConfig = {
     remotePatterns: [
      {
         protocol: "https",
-        hostname: "static.nike.com", // Nike (Product)
+        hostname: "static.nike.com", 
         pathname: "/**",
       },
       {
         protocol: 'https',
-        hostname: 'lh3.googleusercontent.com', // Domain Foto GitHub
+        hostname: 'lh3.googleusercontent.com', 
         port: "",
-        pathname: "/**", // Sesuaikan dengan path gambar GitHub jika diperlukan
+        pathname: "/**", 
       },
     ],
   },
