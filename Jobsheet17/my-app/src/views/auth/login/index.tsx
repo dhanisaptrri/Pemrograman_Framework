@@ -98,7 +98,15 @@ const handleSubmit = async (event: any) => {
                         disabled={isLoading}
                     >
                         {isLoading ? "Loading..." : "login"}
-                    </button>
+                    </button> {" "}
+                    <br /> <br />
+                    <button
+                    onClick={() => signIn("google", { callbackUrl, redirect: false})}
+                    className={style.login__from_item__button}
+                    disabled={isLoading}
+                    >
+                        {isLoading ? "Loading..." : "sign in with google"}
+                        </button>                
                 </form>
                 <br />
                 <p className={style.login__form__item__text}>

@@ -47,11 +47,12 @@ export const authOptions: NextAuthOptions = {
     ],
 
     callbacks: {
-        async jwt({ token, account, user }: any) {
+        async jwt({ token, account, user, image }: any) {
             if (account?.provider === "credentials" && user) {
                 token.email = user.email
                 token.fullname = user.fullname
                 token.role = user.role
+                token.image = user.image
             }
             // Jika login dengan Google, tambahkan informasi yang diperlukan ke token
             if (account?. provider === "google") {
@@ -92,7 +93,7 @@ export const authOptions: NextAuthOptions = {
     },
 
     pages: {
-        signIn: "/user/login",
+        signIn: "/auth/login",
     },
 }
 
