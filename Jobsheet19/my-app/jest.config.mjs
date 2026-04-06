@@ -5,8 +5,23 @@ const createJestConfig = nextJest({
 });
 
 const config = {
-    converageProvider: 'v8',
-    testEnvironment: 'jsdom',  
+    // converageProvider: 'v8',
+    testEnvironment: 'jsdom', 
+    modulePaths: ['<rootDir>/src/'],
+    collectCovarage: true,
+    collectCoverageFrom: [
+        '**/*.{ts,tsx}',
+        '**/*.d.ts',
+        '!**/node_modules/**',
+        '!**/.next/**',
+        '!**/coverage/**',
+        '!**/jest.config.mjs',
+        '!**/next.config.mjs',
+        '!**/types/**',
+        '!**/views/**',
+        '!**/pages/api/**',
+
+    ]
 };
 
 export default createJestConfig(config);
