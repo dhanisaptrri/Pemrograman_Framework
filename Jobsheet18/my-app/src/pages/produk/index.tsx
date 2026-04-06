@@ -1,10 +1,14 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import TampilanProduk from "../../views/produk";
 import useSWR from "swr";
 import fetcher from "../../utils/swr/fetcher";
+import dynamic  from "next/dynamic";
 
 // const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const TampilanProduk = dynamic(() => import("../../views/produk"), {
+  loading: () => <p>Memuat Daftar Produk...</p>,
+  ssr: false 
+});
 
 const kategori = () => {
   // const [isLogin, setIsLogin] = useState(true);
