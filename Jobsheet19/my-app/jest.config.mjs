@@ -1,4 +1,4 @@
-import nextJest from 'nest/jets.js';
+import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
   dir: './',
@@ -6,7 +6,7 @@ const createJestConfig = nextJest({
 
 const config = {
     converageProvider: 'v8',
-    testEnvironment: 'jest-environment-jsdom',  
+    testEnvironment: 'jsdom',  
 };
 
 export default createJestConfig(config);
