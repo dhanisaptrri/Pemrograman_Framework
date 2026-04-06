@@ -1,4 +1,4 @@
-import { signIn, signInWithGoogle    } from "@/utils/db/servicefirebase"
+import { signIn as signInFirebase, loginWithOAuth } from "@/utils/db/servicefirebase"
 import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
             async authorize(credentials) {
                 if (!credentials?.email || !credentials?.password) return null
 
-                const user: any = await signIn(credentials.email)
+                const user: any = await signInFirebase(credentials.email)
 
                 if (user) {
                     const isPasswordValid = await bcrypt.compare(
@@ -72,7 +72,7 @@ export const authOptions: NextAuthOptions = {
             };
 
             // Memanggil service firebase untuk simpan/update data user ke DB
-            await signInWithGoogle(data, (result: any) => {
+            await loginWithOAuth(data, (result: any) => {
                 if (result.status) {
                     token.fullname = result.data.fullname;
                     token.email = result.data.email;

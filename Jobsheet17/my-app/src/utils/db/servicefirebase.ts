@@ -91,7 +91,7 @@ export async function signUp(
     }
 }
 
-export async function signInWithGoogle(userData: any, callback: any) {
+export async function loginWithOAuth(userData: any, callback: any) {
     try {
         const q = query(
             collection(db, "users"),
