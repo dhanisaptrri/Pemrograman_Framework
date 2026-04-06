@@ -6,7 +6,9 @@ exports[`About Page renders about page correctly 1`] = `
   "baseElement": <body>
     <div>
       <div>
-        <h1>
+        <h1
+          data-testid="title"
+        >
           INI HALAMAN ABOUT
         </h1>
         <br />
@@ -22,7 +24,9 @@ exports[`About Page renders about page correctly 1`] = `
   </body>,
   "container": <div>
     <div>
-      <h1>
+      <h1
+        data-testid="title"
+      >
         INI HALAMAN ABOUT
       </h1>
       <br />

@@ -9,7 +9,7 @@ export default function Home() {
   return (
 
       <div>
-      <h1>INI HALAMAN ABOUT</h1><br />
+      <h1 data-testid="title">INI HALAMAN ABOUT</h1><br />
       <p>Nama : Dhanisa Putri Mashilfa</p>
       <p>Nim : 2341720212</p>
       <>Prodi : D4 Manajemen Informatika</>
