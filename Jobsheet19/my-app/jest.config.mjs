@@ -5,22 +5,15 @@ const createJestConfig = nextJest({
 });
 
 const config = {
-    // converageProvider: 'v8',
+    coverageProvider: 'v8',
     testEnvironment: 'jsdom', 
     modulePaths: ['<rootDir>/src/'],
-    collectCovarage: true,
+    collectCoverage: true,
     collectCoverageFrom: [
-        '**/*.{ts,tsx}',
-        '**/*.d.ts',
-        '!**/node_modules/**',
-        '!**/.next/**',
-        '!**/coverage/**',
-        '!**/jest.config.mjs',
-        '!**/next.config.mjs',
-        '!**/types/**',
-        '!**/views/**',
-        '!**/pages/api/**',
-
+        'src/pages/about/index.tsx',
+        'src/pages/produk/index.tsx',
+        'src/components/layouts/navbar/index.tsx',
+        'src/utils/swr/fetcher.ts',
     ]
 };
 
