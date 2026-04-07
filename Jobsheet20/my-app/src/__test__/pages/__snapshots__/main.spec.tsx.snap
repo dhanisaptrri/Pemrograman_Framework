@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Aplikasi Unit Testing renders navbar correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="navbar"
+  >
+    <div
+      class="navbar__brand"
+      id="title"
+    />
+    <div
+      class="navbar__right"
+    >
+      <button
+        class="navbar__button navbar_button--primary"
+      >
+        Sign In
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
